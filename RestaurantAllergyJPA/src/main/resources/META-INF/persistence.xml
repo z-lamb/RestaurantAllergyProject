@@ -9,6 +9,17 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     <!-- entities goes here -->
+    <class>com.skilldistillery.restaurantallergy.entities.Address</class>
+    <class>com.skilldistillery.restaurantallergy.entities.Allergy</class>
+    <class>com.skilldistillery.restaurantallergy.entities.BusinessInfo</class>
+    <class>com.skilldistillery.restaurantallergy.entities.Cuisine</class>
+    <class>com.skilldistillery.restaurantallergy.entities.DayOfWeek</class>
+    <class>com.skilldistillery.restaurantallergy.entities.Delivery</class>
+    <class>com.skilldistillery.restaurantallergy.entities.GoodFor</class>
+    <class>com.skilldistillery.restaurantallergy.entities.Hours</class>
+    <class>com.skilldistillery.restaurantallergy.entities.MenuItem</class>
+    <class>com.skilldistillery.restaurantallergy.entities.Restaurant</class>
+    <class>com.skilldistillery.restaurantallergy.entities.SpecialHours</class>
     <class>com.skilldistillery.restaurantallergy.entities.User</class>
 
     <!-- Sort by alphabetical to make each entity easy to find -->

@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `city` VARCHAR(45) NOT NULL,
   `state` VARCHAR(45) NOT NULL,
   `zip` VARCHAR(45) NULL,
+  `active` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -103,6 +104,7 @@ CREATE TABLE IF NOT EXISTS `restaurant` (
   `phone` VARCHAR(45) NULL,
   `website` VARCHAR(255) NULL,
   `date_created` DATETIME NOT NULL DEFAULT current_timestamp,
+  `active` TINYINT(1) NOT NULL DEFAULT 1,
   `address_id` INT NOT NULL,
   `business_info_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -192,6 +194,7 @@ CREATE TABLE IF NOT EXISTS `review` (
   `rating` VARCHAR(45) NULL,
   `date_created` DATETIME NOT NULL DEFAULT current_timestamp,
   `useful` INT NULL,
+  `active` TINYINT(1) NOT NULL DEFAULT 1,
   `user_id` INT NOT NULL,
   `restaurant_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -262,6 +265,7 @@ CREATE TABLE IF NOT EXISTS `menu_item` (
   `calories` INT NULL,
   `cooking_process` TEXT NULL,
   `restaurant_id` INT NOT NULL,
+  `active` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_menu_item_restaurant1_idx` (`restaurant_id` ASC),
   CONSTRAINT `fk_menu_item_restaurant1`
@@ -440,7 +444,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `restaurantallergydb`;
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`) VALUES (1, '10252 Carrara Terrace', NULL, 'Parker', 'CO', '80134');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `active`) VALUES (1, '10252 Carrara Terrace', NULL, 'Parker', 'CO', '80134', DEFAULT);
 
 COMMIT;
 
@@ -471,7 +475,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `restaurantallergydb`;
-INSERT INTO `restaurant` (`id`, `name`, `price_range`, `store_number`, `phone`, `website`, `date_created`, `address_id`, `business_info_id`) VALUES (1, 'Lamb Cafe', 1, NULL, '720-618-8346', NULL, '2018-12-26 00:00:00', 1, 1);
+INSERT INTO `restaurant` (`id`, `name`, `price_range`, `store_number`, `phone`, `website`, `date_created`, `active`, `address_id`, `business_info_id`) VALUES (1, 'Lamb Cafe', 1, NULL, '720-618-8346', NULL, '2018-12-26 00:00:00', DEFAULT, 1, 1);
 
 COMMIT;
 
@@ -1206,7 +1210,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `restaurantallergydb`;
-INSERT INTO `menu_item` (`id`, `category`, `title`, `description`, `price`, `calories`, `cooking_process`, `restaurant_id`) VALUES (1, 'Lunch', 'Mac N Cheese', 'Annie\'s Organic Shell Mac N Cheese', '.99', 100, 'Bring water to boil in a pot. Pour in shells. Cook until soft. Drain water. Mix milk, butter, and powder cheese.', 1);
+INSERT INTO `menu_item` (`id`, `category`, `title`, `description`, `price`, `calories`, `cooking_process`, `restaurant_id`, `active`) VALUES (1, 'Lunch', 'Mac N Cheese', 'Annie\'s Organic Shell Mac N Cheese', '.99', 100, 'Bring water to boil in a pot. Pour in shells. Cook until soft. Drain water. Mix milk, butter, and powder cheese.', 1, DEFAULT);
 
 COMMIT;
 
