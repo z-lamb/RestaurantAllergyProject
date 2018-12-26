@@ -66,27 +66,27 @@ DROP TABLE IF EXISTS `business_info` ;
 
 CREATE TABLE IF NOT EXISTS `business_info` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `vegitarians` TINYINT(1) NULL,
-  `reservations` TINYINT(1) NULL,
-  `delivery` TINYINT(1) NULL,
-  `take_out` TINYINT(1) NULL,
-  `credit_cards` TINYINT(1) NULL,
-  `mobile_pay` TINYINT(1) NULL,
+  `vegitarians` TINYINT(1) NULL DEFAULT 0,
+  `reservations` TINYINT(1) NULL DEFAULT 0,
+  `delivery` TINYINT(1) NULL DEFAULT 0,
+  `take_out` TINYINT(1) NULL DEFAULT 0,
+  `credit_cards` TINYINT(1) NULL DEFAULT 0,
+  `mobile_pay` TINYINT(1) NULL DEFAULT 0,
   `parking` VARCHAR(45) NULL,
-  `kids` TINYINT(1) NULL,
-  `groups` TINYINT(1) NULL,
+  `kids` TINYINT(1) NULL DEFAULT 0,
+  `groups` TINYINT(1) NULL DEFAULT 0,
   `ambiance` VARCHAR(45) NULL,
-  `noise_level` ENUM('QUIET', 'MODERATE', 'LOUD', 'VERYLOUD') NULL,
-  `dancing` TINYINT(1) NULL,
-  `alcohol` ENUM('FULLBAR', 'BEER', 'WINE', 'LIMITED', 'NONE') NULL,
-  `happy_hour` TINYINT(1) NULL,
-  `coat_check` TINYINT(1) NULL,
-  `smoking` TINYINT(1) NULL,
-  `outdoor_seating` TINYINT(1) NULL,
-  `wifi` TINYINT(1) NULL,
-  `tv` TINYINT(1) NULL,
-  `waiter_service` TINYINT(1) NULL,
-  `caters` TINYINT(1) NULL,
+  `noise_level` ENUM('QUIET', 'MODERATE', 'LOUD', 'VERYLOUD') NULL DEFAULT 'MODERATE',
+  `dancing` TINYINT(1) NULL DEFAULT 0,
+  `alcohol` ENUM('FULLBAR', 'BEER', 'WINE', 'LIMITED', 'NONE') NULL DEFAULT 'NONE',
+  `happy_hour` TINYINT(1) NULL DEFAULT 0,
+  `coat_check` TINYINT(1) NULL DEFAULT 0,
+  `smoking` TINYINT(1) NULL DEFAULT 0,
+  `outdoor_seating` TINYINT(1) NULL DEFAULT 0,
+  `wifi` TINYINT(1) NULL DEFAULT 0,
+  `tv` TINYINT(1) NULL DEFAULT 0,
+  `waiter_service` TINYINT(1) NULL DEFAULT 0,
+  `caters` TINYINT(1) NULL DEFAULT 0,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -264,8 +264,8 @@ CREATE TABLE IF NOT EXISTS `menu_item` (
   `price` VARCHAR(45) NULL,
   `calories` INT NULL,
   `cooking_process` TEXT NULL,
-  `restaurant_id` INT NOT NULL,
   `active` TINYINT(1) NOT NULL DEFAULT 1,
+  `restaurant_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_menu_item_restaurant1_idx` (`restaurant_id` ASC),
   CONSTRAINT `fk_menu_item_restaurant1`
@@ -1210,7 +1210,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `restaurantallergydb`;
-INSERT INTO `menu_item` (`id`, `category`, `title`, `description`, `price`, `calories`, `cooking_process`, `restaurant_id`, `active`) VALUES (1, 'Lunch', 'Mac N Cheese', 'Annie\'s Organic Shell Mac N Cheese', '.99', 100, 'Bring water to boil in a pot. Pour in shells. Cook until soft. Drain water. Mix milk, butter, and powder cheese.', 1, DEFAULT);
+INSERT INTO `menu_item` (`id`, `category`, `title`, `description`, `price`, `calories`, `cooking_process`, `active`, `restaurant_id`) VALUES (1, 'Lunch', 'Mac N Cheese', 'Annie\'s Organic Shell Mac N Cheese', '.99', 100, 'Bring water to boil in a pot. Pour in shells. Cook until soft. Drain water. Mix milk, butter, and powder cheese.', DEFAULT, 1);
 
 COMMIT;
 
